@@ -18,19 +18,146 @@ agrícola via satélite + IoT para produtores rurais brasileiros.
 
 ---
 
-## Diagrama de Entidades
+## 📐 Diagrama de Entidades
+
+> Banco Oracle compartilhado por Java API e .NET API — schema único com 14 tabelas.
 
 ```mermaid
 erDiagram
-    TB_GST_USUARIO_NET ||--o{ TB_GST_REFRESH_TOKEN_NET : "possui"
-    TB_GST_PRODUTOR ||--o{ TB_GST_PROPRIEDADE : "possui"
-    TB_GST_PROPRIEDADE ||--o{ TB_GST_TALHAO : "subdivide"
-    TB_GST_TALHAO ||--o{ TB_GST_SENSOR : "recebe"
-    TB_GST_TALHAO ||--o{ TB_GST_IMAGEM_SATELITAL : "associa"
-    TB_GST_TALHAO ||--o{ TB_GST_ALERTA : "dispara"
-    TB_GST_TALHAO ||--|| TB_GST_CONFIGURACAO : "configura"
-    TB_GST_SENSOR ||--o{ TB_GST_LEITURA_SENSOR : "gera"
-    TB_GST_ALERTA ||--o{ TB_GST_LOG_ALERTA : "registra"
+    TB_GST_USUARIO_NET {
+        NUMBER id_usuario PK
+        VARCHAR2 nm_nome
+        VARCHAR2 ds_email UK
+        VARCHAR2 ds_senha_hash
+        VARCHAR2 ds_role
+        CHAR fl_ativo
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_REFRESH_TOKEN_NET {
+        NUMBER id_refresh PK
+        NUMBER id_usuario FK
+        VARCHAR2 ds_token UK
+        TIMESTAMP dt_expiracao
+        CHAR fl_revogado
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_USUARIO_JAVA {
+        NUMBER id_usuario PK
+        VARCHAR2 nm_nome
+        VARCHAR2 ds_email UK
+        VARCHAR2 ds_senha_hash
+        VARCHAR2 ds_role
+        CHAR fl_ativo
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_PRODUTOR {
+        NUMBER id_produtor PK
+        NUMBER id_usuario FK
+        VARCHAR2 nm_nome
+        CHAR nr_cpf UK
+        VARCHAR2 ds_email UK
+        VARCHAR2 nr_telefone
+        VARCHAR2 ds_fcm_token
+        CHAR fl_ativo
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_PROPRIEDADE {
+        NUMBER id_propriedade PK
+        NUMBER id_produtor FK
+        VARCHAR2 nm_nome
+        VARCHAR2 nm_municipio
+        CHAR sg_estado
+        NUMBER nr_area_ha
+        CHAR fl_ativa
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_TALHAO {
+        NUMBER id_talhao PK
+        NUMBER id_propriedade FK
+        VARCHAR2 nm_nome
+        VARCHAR2 ds_cultura
+        NUMBER nr_area_ha
+        CHAR fl_ativo
+        TIMESTAMP dt_criacao
+    }
+
+    TB_GST_SENSOR {
+        NUMBER id_sensor PK
+        NUMBER id_talhao FK
+        VARCHAR2 cd_identificador_hw UK
+        VARCHAR2 ds_localizacao
+        CHAR fl_ativo
+        TIMESTAMP dt_instalacao
+    }
+
+    TB_GST_LEITURA_SENSOR {
+        NUMBER id_leitura PK
+        NUMBER id_sensor FK
+        TIMESTAMP dt_leitura
+        NUMBER nr_temp_ar
+        NUMBER nr_umidade_solo
+        NUMBER nr_luminosidade
+        CHAR fl_transmitida
+        TIMESTAMP dt_recebida
+    }
+
+    TB_GST_IMAGEM_SATELITAL {
+        NUMBER id_imagem PK
+        NUMBER id_talhao FK
+        DATE dt_captura
+        NUMBER nr_ndvi
+        VARCHAR2 ds_fonte
+        VARCHAR2 ds_status_proc
+        VARCHAR2 ds_erro
+        TIMESTAMP dt_processado
+    }
+
+    TB_GST_CONFIGURACAO {
+        NUMBER id_config PK
+        NUMBER id_talhao FK
+        NUMBER nr_threshold_umid_min
+        NUMBER nr_threshold_ndvi_min
+        NUMBER nr_janela_fusao_horas
+        TIMESTAMP dt_atualizacao
+    }
+
+    TB_GST_ALERTA {
+        NUMBER id_alerta PK
+        NUMBER id_talhao FK
+        VARCHAR2 tp_tipo
+        VARCHAR2 tp_nivel
+        VARCHAR2 tp_origem
+        VARCHAR2 ds_descricao
+        VARCHAR2 st_status
+        TIMESTAMP dt_gerado
+        TIMESTAMP dt_visualizado
+        TIMESTAMP dt_resolvido
+    }
+
+    TB_GST_LOG_ALERTA {
+        NUMBER id_log PK
+        NUMBER id_alerta FK
+        VARCHAR2 ds_acao
+        VARCHAR2 ds_origem
+        VARCHAR2 ds_observacao
+        TIMESTAMP dt_evento
+    }
+
+    TB_GST_USUARIO_NET  ||--o{ TB_GST_REFRESH_TOKEN_NET : "possui"
+    TB_GST_USUARIO_JAVA ||--o{ TB_GST_PRODUTOR : "cadastra"
+    TB_GST_PRODUTOR     ||--o{ TB_GST_PROPRIEDADE : "possui"
+    TB_GST_PROPRIEDADE  ||--o{ TB_GST_TALHAO : "subdivide"
+    TB_GST_TALHAO       ||--o{ TB_GST_SENSOR : "recebe"
+    TB_GST_TALHAO       ||--o{ TB_GST_IMAGEM_SATELITAL : "associa"
+    TB_GST_TALHAO       ||--o{ TB_GST_ALERTA : "dispara"
+    TB_GST_TALHAO       ||--|| TB_GST_CONFIGURACAO : "configura"
+    TB_GST_SENSOR       ||--o{ TB_GST_LEITURA_SENSOR : "gera"
+    TB_GST_ALERTA       ||--o{ TB_GST_LOG_ALERTA : "registra"
 ```
 
 ---
