@@ -1,0 +1,19 @@
+## .NET gitignore
+bin/
+obj/
+*.user
+*.suo
+.vs/
+*.log
+
+## Secrets
+appsettings.Development.json
+*.env
+*.env.local
+
+## Rider / JetBrains
+.idea/
+
+## OS
+.DS_Store
+Thumbs.db
