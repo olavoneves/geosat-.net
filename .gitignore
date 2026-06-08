@@ -11,6 +11,9 @@ appsettings.Development.json
 *.env
 *.env.local
 
+## HTTP client files (gerados pelo template — IDE-specific)
+*.http
+
 ## Rider / JetBrains
 .idea/
 
