@@ -347,4 +347,73 @@ abaixo do threshold, o trigger detecta e gera o alerta sem ação adicional da A
 
 ---
 
+## 🧪 Evidências de Testes
+
+### Autenticação
+
+#### Login como ADMIN
+> 📸 *[Substituir por print do POST /auth/login com resposta 200 mostrando accessToken e refreshToken]*
+
+---
+
+### Dashboard — Core da API
+
+#### Resumo geral do sistema
+> 📸 *[Substituir por print do GET /dashboard/resumo mostrando totalProdutores, totalTalhoes, alertasPendentes, alertasCriticos e imagensPendentes com dados reais]*
+
+#### Distribuição de alertas por nível
+> 📸 *[Substituir por print do GET /dashboard/alertas-por-nivel com contagem por ATENCAO, ALERTA e CRITICO]*
+
+#### Talhões em risco com alertas críticos
+> 📸 *[Substituir por print do GET /dashboard/talhoes-em-risco listando talhões com alertas pendentes]*
+
+#### NDVI médio do talhão
+> 📸 *[Substituir por print do GET /dashboard/ndvi-medio/{idTalhao} com valor calculado nos últimos 30 dias]*
+
+---
+
+### Imagens Satelitais e Alerta Automático
+
+#### Registrar e processar imagem (trigger gerando alerta)
+> 📸 *[Substituir por print do POST /imagens com status PENDENTE]*
+> 📸 *[Substituir por print do PATCH /imagens/{id}/processar com NDVI 0.18 e resposta PROCESSADO]*
+> 📸 *[Substituir por print do GET /alertas mostrando alerta NDVI gerado automaticamente pelo trigger Oracle]*
+
+---
+
+### Gestão de Alertas
+
+#### Ciclo completo visualizar → resolver
+> 📸 *[Substituir por print do PATCH /alertas/{id}/visualizar com stStatus=VISUALIZADO]*
+> 📸 *[Substituir por print do PATCH /alertas/{id}/resolver com stStatus=RESOLVIDO e dtResolvido preenchido]*
+
+---
+
+### Configurações de Threshold
+
+#### Threshold padrão criado pelo trigger
+> 📸 *[Substituir por print do GET /configuracoes/talhao/{id} com valores padrão: umid=30, ndvi=0.3, janela=48]*
+
+---
+
+### Validações e Erros
+
+#### Entrada inválida (400)
+> 📸 *[Substituir por print de POST /imagens com DsFonte inválida retornando 400]*
+
+#### Acesso sem token (401)
+> 📸 *[Substituir por print de requisição sem Authorization retornando 401]*
+
+---
+
+### Persistência no Banco Oracle
+
+#### Alertas gerados pelo trigger Oracle
+> 📸 *[Substituir por print do SQL Developer com SELECT em TB_GST_ALERTA mostrando alertas gerados automaticamente]*
+
+#### Log de auditoria
+> 📸 *[Substituir por print com SELECT em TB_GST_LOG_ALERTA com histórico de status]*
+
+---
+
 *Global Solution 2026/1 | FIAP | 2TDS Fevereiro*
