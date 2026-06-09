@@ -11,10 +11,10 @@ agrícola via satélite + IoT para produtores rurais brasileiros.
 
 | Recurso | Link |
 |---------|------|
-| Swagger UI (local) | http://localhost:5146/swagger |
-| Vídeo Demonstração (8 min) | **[SUBSTITUIR após gravação]** |
+| Swagger UI (local) | *http://localhost:5146/swagger* |
+| Vídeo Demonstração (8 min) | *https://youtu.be/sCvdmr28kG0?si=Glumr6_0f3weXs2H* |
 | Vídeo Pitch (3 min) | **[SUBSTITUIR após gravação]** |
-| Repositório GitHub | https://github.com/olavoneves/geosat-.net |
+| Repositório GitHub | *https://github.com/olavoneves/geosat-.net* |
 
 ---
 
@@ -211,8 +211,8 @@ em `TB_GST_REFRESH_TOKEN_NET`. Retorna 401 se inválido ou expirado.
 
 | Tecnologia | Versão |
 |------------|--------|
-| .NET | 10.0 |
-| ASP.NET Core Web API | 10.0 |
+| .NET | 8.0 |
+| ASP.NET Core Web API | 8.0 |
 | Entity Framework Core | 8.0 |
 | Oracle.EntityFrameworkCore | 8.21.140 |
 | Swashbuckle (Swagger) | 6.6.2 |
@@ -223,7 +223,7 @@ em `TB_GST_REFRESH_TOKEN_NET`. Retorna 401 se inválido ou expirado.
 ## Executando Localmente
 
 ### Pré-requisitos
-- .NET 10 SDK
+- .NET 8 SDK
 - Acesso ao banco Oracle GeoSat (credenciais da FIAP)
 
 ### Configuração
