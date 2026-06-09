@@ -352,67 +352,67 @@ abaixo do threshold, o trigger detecta e gera o alerta sem ação adicional da A
 ### Autenticação
 
 #### Login como ADMIN
-> 📸 *[Substituir por print do POST /auth/login com resposta 200 mostrando accessToken e refreshToken]*
+![Login como ADMIN](docs/prints/auth-login.png)
 
 ---
 
 ### Dashboard — Core da API
 
 #### Resumo geral do sistema
-> 📸 *[Substituir por print do GET /dashboard/resumo mostrando totalProdutores, totalTalhoes, alertasPendentes, alertasCriticos e imagensPendentes com dados reais]*
+![Resumo geral do sistema](docs/prints/dashboard-resumo.png)
 
 #### Distribuição de alertas por nível
-> 📸 *[Substituir por print do GET /dashboard/alertas-por-nivel com contagem por ATENCAO, ALERTA e CRITICO]*
+![Distribuição de alertas por nível](docs/prints/dashboard-alertas.png)
 
 #### Talhões em risco com alertas críticos
-> 📸 *[Substituir por print do GET /dashboard/talhoes-em-risco listando talhões com alertas pendentes]*
+![Talhões em risco](docs/prints/dashboard-talhoes.png)
 
 #### NDVI médio do talhão
-> 📸 *[Substituir por print do GET /dashboard/ndvi-medio/{idTalhao} com valor calculado nos últimos 30 dias]*
+![NDVI médio do talhão](docs/prints/dashboard-ndvi.png)
 
 ---
 
 ### Imagens Satelitais e Alerta Automático
 
 #### Registrar e processar imagem (trigger gerando alerta)
-> 📸 *[Substituir por print do POST /imagens com status PENDENTE]*
-> 📸 *[Substituir por print do PATCH /imagens/{id}/processar com NDVI 0.18 e resposta PROCESSADO]*
-> 📸 *[Substituir por print do GET /alertas mostrando alerta NDVI gerado automaticamente pelo trigger Oracle]*
+![Registrar imagem — status PENDENTE](docs/prints/imagens.png)
+![Processar imagem — NDVI 0.18 → PROCESSADO](docs/prints/imagem-processar.png)
+![Alerta gerado automaticamente pelo trigger Oracle](docs/prints/alertas.png)
 
 ---
 
 ### Gestão de Alertas
 
 #### Ciclo completo visualizar → resolver
-> 📸 *[Substituir por print do PATCH /alertas/{id}/visualizar com stStatus=VISUALIZADO]*
-> 📸 *[Substituir por print do PATCH /alertas/{id}/resolver com stStatus=RESOLVIDO e dtResolvido preenchido]*
+![Visualizar alerta — stStatus=VISUALIZADO](docs/prints/alertas-visualizar.png)
+![Resolver alerta — stStatus=RESOLVIDO](docs/prints/alertas-resolver.png)
 
 ---
 
 ### Configurações de Threshold
 
 #### Threshold padrão criado pelo trigger
-> 📸 *[Substituir por print do GET /configuracoes/talhao/{id} com valores padrão: umid=30, ndvi=0.3, janela=48]*
+![Configuração de threshold do talhão](docs/prints/configuracao.png)
 
 ---
 
 ### Validações e Erros
 
-#### Entrada inválida (400)
-> 📸 *[Substituir por print de POST /imagens com DsFonte inválida retornando 400]*
+#### Token inválido (401)
+![Token inválido — 401](docs/prints/token-invalido.png)
 
 #### Acesso sem token (401)
-> 📸 *[Substituir por print de requisição sem Authorization retornando 401]*
+![Acesso sem token — 401](docs/prints/token-nao-fornecido.png)
 
 ---
 
 ### Persistência no Banco Oracle
 
 #### Alertas gerados pelo trigger Oracle
-> 📸 *[Substituir por print do SQL Developer com SELECT em TB_GST_ALERTA mostrando alertas gerados automaticamente]*
+![SELECT TB_GST_ALERTA — alertas gerados pelo trigger](docs/prints/select-alerta.png)
 
 #### Log de auditoria
-> 📸 *[Substituir por print com SELECT em TB_GST_LOG_ALERTA com histórico de status]*
+![SELECT TB_GST_LOG_ALERTA — histórico de status](docs/prints/select-log-alerta.png)
 
 ---
 
