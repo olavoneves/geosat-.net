@@ -13,7 +13,7 @@ agrícola via satélite + IoT para produtores rurais brasileiros.
 |---------|------|
 | Swagger UI (local) | *http://localhost:5146/swagger* |
 | Vídeo Demonstração (8 min) | *https://youtu.be/sCvdmr28kG0?si=Glumr6_0f3weXs2H* |
-| Vídeo Pitch (3 min) | **[SUBSTITUIR após gravação]** |
+| Vídeo Pitch (3 min) | *https://youtu.be/OgCjSI7OILQ* |
 | Repositório GitHub | *https://github.com/olavoneves/geosat-.net* |
 
 ---
